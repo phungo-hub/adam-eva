@@ -32,10 +32,8 @@
             - setWeight(int): void
      */
 
-    let Apple = function() {
-        this.setWeight = function(weight) {
-            this.weight = weight;
-        };
+    let Apple = function(weight) {
+        this.weight = weight;
 
         this.isEmpty = function() {
             return this.weight === 0 ? true : false;
@@ -62,12 +60,12 @@
             return !!this.gender === "name";
         }
 
-        this.checkApple = function(apple) {
-            return apple.isEmpty();
+        this.checkAppleEmpty = function(apple) {
+            return !apple.isEmpty();
         }
 
         this.eat = function(apple) {
-            if (this.checkApple(apple)) {
+            if (this.checkAppleEmpty(apple)) {
                 apple.decrease();
             }
         }
@@ -84,8 +82,7 @@
 
     let adam = new Human("adam", "male", 65);
     let eva = new Human("eva", "female", 55);
-    let apple_1 = new Apple();
-    apple_1.setWeight(10);
+    let apple_1 = new Apple(10);
 
     document.write("Giới tính của Adam: " + adam.gender + "<br>");
     document.write("Giới tính của Eva: " + eva.gender + "<br>");
@@ -102,7 +99,6 @@
         document.write("Eva ăn 1 miếng táo" + "<br>")
         eva.eat(apple_1);
         document.write("Táo còn lại: " + apple_1.weight + " đơn vị" + "<br><br>");
-        apple_1.decrease();
     }
 
 </script>
