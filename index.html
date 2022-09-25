@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /***
+       * class Apple
+        Property:
+            - weight
+        Methods:
+            - decrease(): void
+            - isEmpty(): boolean
+            - getWeight(): int
+
+        * class Human
+        Property:
+            - name
+            - gender
+            - weight
+        Methods:
+            - isMale()
+            - setGender(boolean): void
+            - checkApple(Apple): boolean
+            - eat(Apple): void
+            - say(String): void
+            - getName(): String
+            - setName(String): void
+            - getWeight(): int
+            - setWeight(int): void
+     */
+
+    let Apple = function() {
+        this.setWeight = function(weight) {
+            this.weight = weight;
+        };
+
+        this.isEmpty = function() {
+            return this.weight === 0 ? true : false;
+        }
+        this.decrease = function() {
+            if (!this.isEmpty()) {
+                this.weight--;
+            }
+        }
+        this.getWeight = function() {
+            return this.weight;
+        }
+    }
+
+    let Human = function(name, gender, weight) {
+        this.name = name;
+        this.gender = gender;
+        this.weight = weight;
+        this.othersGender = '';
+        this.othersName = '';
+        this.othersWeight = '';
+
+        this.isMale = function() {
+            return !!this.gender === "name";
+        }
+
+        this.checkApple = function(apple) {
+            return apple.isEmpty();
+        }
+
+        this.eat = function(apple) {
+            if (this.checkApple(apple)) {
+                apple.decrease();
+            }
+        }
+        this.getName = function(other) {
+            return this.othersName = other.name;
+        }
+        this.getGender = function(other) {
+            return this.othersGender = other.gender;
+        }
+        this.getWeight = function(other) {
+            return this.othersWeight = other.weight;
+        }
+    }
+
+    let adam = new Human("adam", "male", 65);
+    let eva = new Human("eva", "female", 55);
+    let apple_1 = new Apple();
+    apple_1.setWeight(10);
+
+    document.write("Giới tính của Adam: " + adam.gender + "<br>");
+    document.write("Giới tính của Eva: " + eva.gender + "<br>");
+    adam.getGender(eva);
+    document.write("Adam biết Eva là: " + adam.othersGender + "<br>");
+    eva.getGender(adam);
+    document.write("Adam biết Eva là: " + eva.othersGender + "<br>");
+    adam.getWeight(eva);
+    document.write("Adam biết Eva nặng: " + adam.othersWeight + "<br><br>");
+
+    while (apple_1.isEmpty() !== true) {
+        document.write("Adam ăn 1 miếng táo" + "<br>")
+        adam.eat(apple_1);
+        document.write("Eva ăn 1 miếng táo" + "<br>")
+        eva.eat(apple_1);
+        document.write("Táo còn lại: " + apple_1.weight + " đơn vị" + "<br><br>");
+        apple_1.decrease();
+    }
+
+</script>
+</body>
+</html>
